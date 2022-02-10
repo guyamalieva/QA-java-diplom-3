@@ -1,7 +1,10 @@
-package com.praktikum;
+package com.pageobgects;
+
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -25,45 +28,62 @@ public class MainPage {
     //локатор таба "булки"
     @FindBy(how = How.XPATH, using = ".//*[@class='text text_type_main-medium mb-6 mt-10' and text()='Булки']")
     private SelenideElement bunTab;
+
     //метод нажатия на кнопку "войти в аккуант"
     public LoginPage clickEntryAccountButton() {
         entryAccountButton.click();
         return page(LoginPage.class);
     }
-    //метод нажатия на кнопку "личный кабинет"
+
+    @Step("Метод нажатия на кнопку Личный кабинет")
     public LoginPage clickPersonalAccountButton() {
         personalAccountButton.click();
         return page(LoginPage.class);
     }
-    //метод переключения табов
-    public void checkConstructorTabsWork() {
+
+    @Step("Метод переключения таба Булки")
+    public void checkConstructorTabBunWork() {
         bunTab.click();
-        fillingTab.click();
+    }
+
+    @Step("Метод переключения таба Соусы")
+    public void checkConstructorTabSauseWork() {
         sauceTab.click();
     }
-    //метод нажатия на кнопку оформить заказ
+
+    @Step("Метод переключения таба Начинки")
+    public void checkConstructorTabFillingWork() {
+        fillingTab.click();
+    }
+
+    @Step("Метод нажатия на кнопку Оформить заказ")
     public MainPage checkМakeOrderButton() {
         makeOrderButton.click();
         return page(MainPage.class);
     }
+
+    @Step("Метод отображения кнопки Оформить заказ")
     public boolean makeOrderButtonVisible() {
         makeOrderButton.shouldBe(visible, enabled);
         return true;
     }
-    //метод получения текста таба "булки"
-    public SelenideElement getTextBunTab() {
-        bunTab.shouldHave(matchText("Булки"));
-        return bunTab;
+
+    @Step("Метод получения текста таба Булки")
+    public boolean getTextBunTab() {
+        bunTab.shouldHave(exactText("Булки"));
+        return true;
     }
-    //метод получения текста таба "соусы"
-    public SelenideElement getTextSauseTab() {
-        sauceTab.shouldHave(matchText("Соусы"));
-        return sauceTab;
+
+    @Step("Метод получения текста таба Соусы")
+    public boolean getTextSauseTab() {
+        sauceTab.shouldHave(exactText("Соусы"));
+        return true;
     }
-    //метод получения текста таба "соусы"
-    public SelenideElement getTextFillingsTab() {
-        fillingTab.shouldHave(matchText("Начинки"));
-        return fillingTab;
+
+    @Step("Метод получения текста таба Начинки")
+    public boolean getTextFillingsTab() {
+        fillingTab.shouldHave(exactText("Начинки"));
+        return true;
     }
 }
 

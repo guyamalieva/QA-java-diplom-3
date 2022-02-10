@@ -1,9 +1,14 @@
-package com.praktikum;
+package com.pageobgects;
+
 import com.codeborne.selenide.SelenideElement;
+import com.pageobgects.LoginPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
+
 public class RegistrationPage {
     //локатор поля "имя"
     @FindBy(how = How.XPATH, using = ".//fieldset[1]//input")
@@ -24,22 +29,25 @@ public class RegistrationPage {
     @FindBy(how = How.XPATH, using = "//*[text()='Войти']")
     private SelenideElement entryRegistrationButton;
 
-    //метод нажатия на кнопку "зарегистрироваться"
+    @Step("Метод нажатия на кнопку Зарегистрироваться")
     public void checkRegistrationButton() {
         registrationButton.click();
     }
-    //метод нажатия на кнопку "войти"
+
+    @Step("Метод нажатия на кнопку Войти")
     public LoginPage clickLoginButton() {
         entryRegistrationButton.click();
         return page(LoginPage.class);
     }
-    //метод наличия хелпер текста "некорректный пароль"
-    public boolean checkErrorText(){
+
+    @Step("Метод наличия хелпер текста Некорректный пароль")
+    public boolean checkErrorText() {
         errorPasswordText.shouldBe(visible);
         return true;
     }
-    //метод заполнения формы регистрации
-    public void fillRegistrationForm(String name, String email, String password){
+
+    @Step("Метод заполнения формы регистрации")
+    public void fillRegistrationForm(String name, String email, String password) {
         nameField.setValue(name);
         emailField.setValue(email);
         passwordField.setValue(password);

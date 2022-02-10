@@ -1,7 +1,12 @@
 package com.praktikum;
+
+import com.pageobgects.LoginPage;
+import com.pageobgects.MainPage;
+import com.pageobgects.RegistrationPage;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
+
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertTrue;
 
@@ -24,16 +29,17 @@ public class RegistrationTest extends SetupTest {
         registrationPage.clickLoginButton();
         assertTrue(loginPage.entryButtonVisible());
     }
+
     @Test
-    @DisplayName ("Проверка регистрации с невалидным паролем")
+    @DisplayName("Проверка регистрации с невалидным паролем")
     public void checkRegistrationWithInvalidPasswords() {
-            mainPage.clickEntryAccountButton();
-            loginPage.clickLoginButton();
-            registrationPage.fillRegistrationForm(name, email, passwordIncorrect);
-            registrationPage.clickLoginButton();
-            assertTrue(registrationPage.checkErrorText());
-        }
+        mainPage.clickEntryAccountButton();
+        loginPage.clickLoginButton();
+        registrationPage.fillRegistrationForm(name, email, passwordIncorrect);
+        registrationPage.clickLoginButton();
+        assertTrue(registrationPage.checkErrorText());
     }
+}
 
 
 

@@ -1,10 +1,13 @@
 package com.praktikum;
 
+import com.pageobgects.*;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Map;
+
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertTrue;
 
@@ -20,6 +23,7 @@ public class LoginTest extends SetupTest {
     public void setUp() {
         userOperations = new UserOperations();
     }
+
     @Test
     @DisplayName("Проверка входа по кнопке Войти в аккаунт на главной странице")
     public void loginFromMainpageEntryButton() {
@@ -29,6 +33,7 @@ public class LoginTest extends SetupTest {
         loginPage.checkEntryButton();
         assertTrue(mainPage.makeOrderButtonVisible());
     }
+
     @Test
     @DisplayName("Проверка входа через кнопку Личный кабинет")
     public void loginFromMainpagePersonalAccountButton() {
@@ -38,6 +43,7 @@ public class LoginTest extends SetupTest {
         loginPage.checkEntryButton();
         assertTrue(mainPage.makeOrderButtonVisible());
     }
+
     @Test
     @DisplayName("Проверка входа через кнопку в форме регистрации")
     public void loginFromRegistrationPage() {
@@ -49,6 +55,7 @@ public class LoginTest extends SetupTest {
         loginPage.checkEntryButton();
         assertTrue(mainPage.makeOrderButtonVisible());
     }
+
     @Test
     @DisplayName("Проверка входа через кнопку в форме восстановления пароля")
     public void loginFromPasswordRecoverPage() {
@@ -60,6 +67,7 @@ public class LoginTest extends SetupTest {
         loginPage.checkEntryButton();
         assertTrue(mainPage.makeOrderButtonVisible());
     }
+
     @After
     public void deleteUser() {
         userOperations.delete();

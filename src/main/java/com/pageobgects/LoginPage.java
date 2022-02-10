@@ -1,7 +1,10 @@
-package com.praktikum;
+package com.pageobgects;
+
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
@@ -25,26 +28,30 @@ public class LoginPage {
     @FindBy(how = How.XPATH, using = "//*[text()='Восстановить пароль']")
     private SelenideElement recoverButton;
 
-    //метод нажатия на "зарегистрироваться"
+    @Step("Метод нажатия на Зарегистрироваться")
     public RegistrationPage clickLoginButton() {
         loginButton.click();
         return page(RegistrationPage.class);
     }
-    //метод заполнения формы авторизации
+
+    @Step("Метод заполнения формы авторизации")
     public void fillLoginForm(String email, String password) {
         emailField.setValue(email);
         passwordField.setValue(password);
     }
-    //метод нажатия на кнопку войти
+
+    @Step("Метод нажатия на кнопку Войти")
     public void checkEntryButton() {
         entryButton.click();
     }
-    //метод нажатия на кнопку восстановить
+
+    @Step("Метод нажатия на кнопку Восстановить")
     public PasswordRecoverPage clickRecoverButton() {
         recoverButton.click();
         return page(PasswordRecoverPage.class);
     }
-    //метод отображения кнопки "войти"
+
+    @Step("Метод отображения кнопки Войти")
     public boolean entryButtonVisible() {
         entryButton.shouldBe(visible, enabled);
         return true;
